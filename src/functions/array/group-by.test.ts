@@ -1,5 +1,4 @@
 import {groupBy} from './group-by';
-import {expect} from 'chai';
 
 describe('array', function () {
   describe('group-by', function () {
@@ -15,9 +14,9 @@ describe('array', function () {
     it('should group the items by their group', function () {
       const result = groupBy(items, item => item.group);
 
-      expect(result.first?.length).equals(3);
-      expect(result.second?.length).equals(1);
-      expect(result.third?.length).equals(2);
+      expect(result.first?.length).toEqual(3);
+      expect(result.second?.length).toEqual(1);
+      expect(result.third?.length).toEqual(2);
     });
 
     it('should group the items by their group with some help of specified keys', function () {
@@ -29,9 +28,9 @@ describe('array', function () {
 
       const result = groupBy(itemsWithSpecificGroups, item => item.group);
 
-      expect(result.first?.length).equals(3);
-      expect(result.second?.length).equals(1);
-      expect(result.third?.length).equals(2);
+      expect(result.first?.length).toEqual(3);
+      expect(result.second?.length).toEqual(1);
+      expect(result.third?.length).toEqual(2);
 
       // expect(result.fourth?.length).equals(2);
       // will give an error since "fourth" is not a known group name.

@@ -1,19 +1,20 @@
-import {expect} from 'chai';
 import {List} from '../../interfaces/list';
 import {filter} from './filter';
 
 describe('list', function () {
   describe('filter', function () {
-    const items: List<string> = {
-      first: 'first',
-      second: 'second',
-      third: 'third',
+    const items: List<{id: number; text: string}> = {
+      first: {id: 1, text: 'first'},
+      second: {id: 2, text: 'second'},
+      third: {id: 3, text: 'third'},
     };
 
     it('should return a new list with only filtered items', function () {
-      const result = filter(items, ([key]) => ['first', 'third'].includes(key));
+      const result = filter(items, item =>
+        ['first', 'third'].includes(item.text)
+      );
 
-      expect(result).to.eql({first: 'first', third: 'third'});
+      expect(Object.keys(result)).toEqual(['first', 'third']);
     });
   });
 });

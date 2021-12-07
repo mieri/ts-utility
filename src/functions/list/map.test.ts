@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import {List} from '../../interfaces/list';
 import {map} from './map';
 
@@ -13,7 +12,11 @@ describe('list', () => {
     it('should return a new object with the same keys mapped', () => {
       const result = map(items, i => i.text.toUpperCase());
 
-      expect(result).to.eql({first: 'FIRST', second: 'SECOND', third: 'THIRD'});
+      expect(result).toEqual({
+        first: 'FIRST',
+        second: 'SECOND',
+        third: 'THIRD',
+      });
     });
   });
 });
