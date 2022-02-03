@@ -1,4 +1,4 @@
-import {simpleSort} from './simple-sort';
+import {desc, simpleSort} from './simple-sort';
 
 describe('simpleSort', () => {
   const unsortedObjects = [
@@ -38,8 +38,8 @@ describe('simpleSort', () => {
   it('should sort list by number descending then name descending', () => {
     const result = simpleSort(
       unsortedObjects,
-      i => [i.amount, 'desc'],
-      i => [i.name, 'desc']
+      i => desc(i.amount),
+      i => desc(i.name)
     );
 
     expect(result).toEqual([
@@ -64,7 +64,7 @@ describe('simpleSort', () => {
 
   it('should not shift order when types are different', () => {
     const a = [...unsortedObjects, {amount: 1, name: 1}];
-    const result = simpleSort(a, i => [i.name as string, 'desc']);
+    const result = simpleSort(a, i => desc(i.name as string));
 
     expect(result.map(i => i.name)).toEqual([
       'tomas',
@@ -82,7 +82,7 @@ describe('simpleSort', () => {
   });
 
   it('should sort by name descending', () => {
-    const result = simpleSort(unsortedObjects, i => [i.name, 'desc']);
+    const result = simpleSort(unsortedObjects, i => desc(i.name));
 
     expect(result.map(i => i.name)).toEqual([
       'tomas',

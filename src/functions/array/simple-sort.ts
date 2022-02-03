@@ -1,10 +1,13 @@
+export const asc = <T>(value: T): [T, 'asc'] => [value, 'asc'];
+export const desc = <T>(value: T): [T, 'desc'] => [value, 'desc'];
+
 export const simpleSort = <T>(
   list: T[],
   ...sortByList: Array<
-    | ((item: T) => string | [string, 'asc' | 'desc' | undefined])
-    | ((item: T) => number | [number, 'asc' | 'desc' | undefined])
+    | ((item: T) => string | [string, 'asc' | 'desc'])
+    | ((item: T) => number | [number, 'asc' | 'desc'])
   >
-) => {
+): T[] => {
   const sortOrderList = sortByList.map(sortBy => {
     const value = sortBy(list[0]);
     return Array.isArray(value) ? value[1] : 'asc';
