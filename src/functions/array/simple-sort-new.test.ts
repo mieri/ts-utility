@@ -1,4 +1,4 @@
-import {asc, desc, simpleSortNew as simpleSort} from './simple-sort-new';
+import {asc, desc, simpleSort as simpleSort} from './simple-sort-new';
 import json from './test-data.json';
 
 describe('simpleSortNew', () => {

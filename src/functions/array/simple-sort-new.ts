@@ -8,7 +8,7 @@ export const desc = <T>(
   sortBy: SortByFunction<T>
 ): [SortByFunction<T>, SortOrder] => [sortBy, 'desc'];
 
-export const simpleSortNew = <T>(
+export const simpleSort = <T>(
   list: T[],
   ...sortByList: Array<SortByFunction<T> | [SortByFunction<T>, SortOrder]>
 ): T[] => {
