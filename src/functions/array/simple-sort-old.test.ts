@@ -1,4 +1,4 @@
-import {desc, simpleSort} from './simple-sort';
+import {desc, simpleSortOld} from './simple-sort-old';
 
 describe('simpleSort', () => {
   const unsortedObjects = [
@@ -15,7 +15,7 @@ describe('simpleSort', () => {
   ];
 
   it('should sort list by amount then by name ascending', () => {
-    const result = simpleSort(
+    const result = simpleSortOld(
       unsortedObjects,
       i => i.amount,
       i => i.name
@@ -36,7 +36,7 @@ describe('simpleSort', () => {
   });
 
   it('should sort list by number descending then name descending', () => {
-    const result = simpleSort(
+    const result = simpleSortOld(
       unsortedObjects,
       i => desc(i.amount),
       i => desc(i.name)
@@ -57,14 +57,14 @@ describe('simpleSort', () => {
   });
 
   it('should return a new array', () => {
-    const result = simpleSort(unsortedObjects, i => i.amount);
+    const result = simpleSortOld(unsortedObjects, i => i.amount);
 
     expect(result).not.toBe(unsortedObjects);
   });
 
   it('should not shift order when types are different', () => {
     const a = [...unsortedObjects, {amount: 1, name: 1}];
-    const result = simpleSort(a, i => desc(i.name as string));
+    const result = simpleSortOld(a, i => desc(i.name as string));
 
     expect(result.map(i => i.name)).toEqual([
       'tomas',
@@ -82,7 +82,7 @@ describe('simpleSort', () => {
   });
 
   it('should sort by name descending', () => {
-    const result = simpleSort(unsortedObjects, i => desc(i.name));
+    const result = simpleSortOld(unsortedObjects, i => desc(i.name));
 
     expect(result.map(i => i.name)).toEqual([
       'tomas',
@@ -99,7 +99,7 @@ describe('simpleSort', () => {
   });
 
   it('should sort by name ascending', () => {
-    const result = simpleSort(unsortedObjects, i => [i.name, undefined]);
+    const result = simpleSortOld(unsortedObjects, i => [i.name, undefined]);
 
     expect(result.map(i => i.name)).toEqual([
       'anders',

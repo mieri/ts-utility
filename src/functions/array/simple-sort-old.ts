@@ -1,7 +1,7 @@
 export const asc = <T>(value: T): [T, 'asc'] => [value, 'asc'];
 export const desc = <T>(value: T): [T, 'desc'] => [value, 'desc'];
 
-export const simpleSort = <T>(
+export const simpleSortOld = <T>(
   list: T[],
   ...sortByList: Array<
     | ((item: T) => string | [string, 'asc' | 'desc'])
