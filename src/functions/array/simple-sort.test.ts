@@ -1,118 +1,69 @@
-import {asc, desc, simpleSort as simpleSort} from './simple-sort';
-import json from './test-data.json';
+import {asc, desc, simpleSort} from './simple-sort';
+import json from '../../../assets/pokemon-test-data.json';
 
-describe('simpleSortNew', () => {
-  const unsortedObjects = [
-    {amount: 1, name: 'rickard'},
-    {amount: 1, name: 'anders'},
-    {amount: 1, name: 'bertil'},
-    {amount: 23, name: 'sven'},
-    {amount: 1, name: 'tomas'},
-    {amount: 262, name: 'sara'},
-    {amount: 1, name: 'maria'},
-    {amount: 52, name: 'carola'},
-    {amount: 57632, name: 'markus'},
-    {amount: 122, name: 'theodor'},
-  ];
-
-  it('should sort list by amount then by name ascending', () => {
+describe('simpleSort', () => {
+  it('should sort list by whether its type is flying, then by name', () => {
     const result = simpleSort(
-      unsortedObjects,
-      i => i.amount,
+      json.pokemon,
+      i => (i.type.includes('Flying') ? 1 : 0), // Only accepts methods returning string | number
       i => i.name
     );
 
-    expect(result).toEqual([
-      {amount: 1, name: 'anders'},
-      {amount: 1, name: 'bertil'},
-      {amount: 1, name: 'maria'},
-      {amount: 1, name: 'rickard'},
-      {amount: 1, name: 'tomas'},
-      {amount: 23, name: 'sven'},
-      {amount: 52, name: 'carola'},
-      {amount: 122, name: 'theodor'},
-      {amount: 262, name: 'sara'},
-      {amount: 57632, name: 'markus'},
+    expect(result.slice(0, 10).map(i => `${i.num} ${i.name}`)).toEqual([
+      '063 Abra',
+      '065 Alakazam',
+      '024 Arbok',
+      '059 Arcanine',
+      '015 Beedrill',
+      '069 Bellsprout',
+      '009 Blastoise',
+      '001 Bulbasaur',
+      '010 Caterpie',
+      '113 Chansey',
     ]);
   });
 
-  it('should sort list by number descending then name descending', () => {
+  it('should sort list by length of name desc, then by name desc', () => {
     const result = simpleSort(
-      unsortedObjects,
-      [i => i.amount, 'desc'],
+      json.pokemon,
+      [i => i.name.length, 'desc'],
       [i => i.name, 'desc']
     );
 
-    expect(result.map(i => `${i.amount}, ${i.name}`)).toEqual([
-      '57632, markus',
-      '262, sara',
-      '122, theodor',
-      '52, carola',
-      '23, sven',
-      '1, tomas',
-      '1, rickard',
-      '1, maria',
-      '1, bertil',
-      '1, anders',
+    expect(result.slice(0, 10).map(i => `${i.num} ${i.name}`)).toEqual([
+      '029 Nidoran ♀ (Female)',
+      '032 Nidoran ♂ (Male)',
+      '040 Wigglytuff',
+      '070 Weepinbell',
+      '071 Victreebel',
+      '073 Tentacruel',
+      '115 Kangaskhan',
+      '039 Jigglypuff',
+      '107 Hitmonchan',
+      "083 Farfetch'd",
     ]);
   });
 
   it('should return a new array', () => {
-    const result = simpleSort(unsortedObjects, i => i.amount);
+    const result = simpleSort(json.pokemon);
 
-    expect(result).not.toBe(unsortedObjects);
-  });
-
-  it('should not shift order when types are different', () => {
-    const a = [...unsortedObjects, {amount: 1, name: 1}];
-    const result = simpleSort(a, [i => i.name as string, 'desc']);
-
-    expect(result.map(i => i.name)).toEqual([
-      'tomas',
-      'theodor',
-      'sven',
-      'sara',
-      'rickard',
-      'markus',
-      'maria',
-      'carola',
-      'bertil',
-      'anders',
-      1,
-    ]);
+    expect(result).not.toBe(json.pokemon);
   });
 
   it('should sort by name descending', () => {
-    const result = simpleSort(unsortedObjects, [i => i.name, 'desc']);
+    const result = simpleSort(json.pokemon, [i => i.name, 'desc']);
 
-    expect(result.map(i => i.name)).toEqual([
-      'tomas',
-      'theodor',
-      'sven',
-      'sara',
-      'rickard',
-      'markus',
-      'maria',
-      'carola',
-      'bertil',
-      'anders',
-    ]);
-  });
-
-  it('should sort by name ascending', () => {
-    const result = simpleSort(unsortedObjects, [i => i.name, undefined]);
-
-    expect(result.map(i => i.name)).toEqual([
-      'anders',
-      'bertil',
-      'carola',
-      'maria',
-      'markus',
-      'rickard',
-      'sara',
-      'sven',
-      'theodor',
-      'tomas',
+    expect(result.slice(0, 10).map(i => i.name)).toEqual([
+      'Zubat',
+      'Zapdos',
+      'Wigglytuff',
+      'Weezing',
+      'Weepinbell',
+      'Weedle',
+      'Wartortle',
+      'Vulpix',
+      'Voltorb',
+      'Vileplume',
     ]);
   });
 
