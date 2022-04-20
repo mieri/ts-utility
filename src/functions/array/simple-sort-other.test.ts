@@ -1,4 +1,4 @@
-import {asc, desc, simpleSort} from './simple-sort';
+import {asc, desc, simpleSortOther as simpleSort} from './simple-sort-other';
 import json from '../../../assets/pokemon-test-data.json';
 
 describe('simpleSort', () => {

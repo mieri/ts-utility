@@ -4,26 +4,12 @@ Simple utility functions
 
 ## Array functions
 
-### groupBy
-
-A small implemententation of groupBy
-
-```typescript
-type specificGroupNames = 'first' | 'second' | 'third';
-const itemsWithSpecificGroups = items as Array<{
-  id: number;
-  group: specificGroupNames;
-}>;
-
-const result = groupBy(itemsWithSpecificGroups, item => item.group);
-// result now contains the grouped arrays.
-// typescript error occurs if you try to access result.noneexisting since its not in the group names
-```
-
 ### simpleSort
 
 Sorts an array using supplied functions to get values to sort by.
 Takes functions returning either strings or numbers.
+
+Somewhat fast. Speed tests using 58mb json (100k entries) sorted by name length and then name descending took around 300ms
 
 Example test case:
 
@@ -59,3 +45,19 @@ it('should sort pokemons on first letter of name and then by weight, descending 
 ```
 
 For more examples see tests
+
+### groupBy
+
+A small implemententation of groupBy
+
+```typescript
+type specificGroupNames = 'first' | 'second' | 'third';
+const itemsWithSpecificGroups = items as Array<{
+  id: number;
+  group: specificGroupNames;
+}>;
+
+const result = groupBy(itemsWithSpecificGroups, item => item.group);
+// result now contains the grouped arrays.
+// typescript error occurs if you try to access result.noneexisting since its not in the group names
+```
