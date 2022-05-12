@@ -1,4 +1,4 @@
-import {AnyFn} from '../../types/any-fn';
+import {Fn as AnyFn} from '../../types/any-fn';
 
 export function memoize<Fn extends AnyFn>(fn: Fn) {
   const returned: {[key: string]: ReturnType<Fn>} = {};

@@ -8,7 +8,6 @@ describe('debounce', () => {
   it('should run supplied function after set time', () => {
     const fn = jest.fn();
     const debounced = debounce(fn);
-    const debounced2 = debounce((a: string) => a);
 
     debounced();
     debounced();
