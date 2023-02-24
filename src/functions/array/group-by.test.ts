@@ -1,6 +1,8 @@
 import {groupBy} from './group-by';
+import persons from '../../../test-data.json';
 
 describe('array', function () {
+  describe('new', () => {});
   describe('group-by', function () {
     const items = [
       {id: 1, group: 'first'},
@@ -34,6 +36,13 @@ describe('array', function () {
 
       // expect(result.fourth?.length).equals(2);
       // will give an error since "fourth" is not a known group name.
+    });
+
+    it('should group by gender', () => {
+      const groupedByGender = groupBy(persons, i => i.gender);
+
+      expect(groupedByGender.Male.length).toEqual(450);
+      expect(groupedByGender.Female.length).toEqual(444);
     });
   });
 });

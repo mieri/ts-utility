@@ -1,4 +1,5 @@
-import {desc, simpleSort} from './simple-sort';
+import {asc, desc, simpleSort} from './simple-sort';
+import persons from '../../../test-data.json';
 
 describe('simpleSort', () => {
   const unsortedObjects = [
@@ -14,10 +15,43 @@ describe('simpleSort', () => {
     {amount: 122, name: 'theodor'},
   ];
 
+  interface Person {
+    name: string;
+    age: number;
+  }
+
+  const lista: Person[] = [
+    {name: 'Rickard', age: 38},
+    {name: 'Caroline', age: 36},
+    {name: 'Bertil', age: 70},
+    {name: 'Inga-lill', age: 65},
+  ];
+
+  function birthday(person: Person) {
+    person.age++;
+  }
+
+  it('should increase age by one', () => {
+    birthday(lista[0]);
+    expect(lista[0].age).toEqual(39);
+  });
+
+  it('should sort list by last then first name', () => {
+    const sorted = simpleSort(
+      persons,
+      i => i.last_name,
+      i => i.first_name
+    );
+
+    expect(sorted.slice(0, 10).map(i => i.id)).toEqual([
+      521, 251, 797, 124, 265, 458, 846, 197, 837, 39,
+    ]);
+  });
+
   it('should sort list by amount then by name ascending', () => {
     const result = simpleSort(
       unsortedObjects,
-      i => i.amount,
+      i => asc(i.amount),
       i => i.name
     );
 
