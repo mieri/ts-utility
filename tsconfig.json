@@ -3,12 +3,9 @@
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "build",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "strictNullChecks": true
   },
-  "exclude": [
-    "src/**/*.test.ts",
-  ],
-  "include": [
-    "src/**/*.ts",
-  ]
+  "exclude": ["src/**/*.test.ts"],
+  "include": ["src/**/*.ts"]
 }

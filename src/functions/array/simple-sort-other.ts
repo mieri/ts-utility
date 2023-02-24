@@ -8,7 +8,7 @@ export const desc = <T>(
   sortBy: SortByFunction<T>
 ): [SortByFunction<T>, SortOrder] => [sortBy, 'desc'];
 
-export const simpleSort = <T>(
+export const simpleSortOther = <T extends object>(
   list: T[],
   ...sortByList: Array<SortByFunction<T> | [SortByFunction<T>, SortOrder]>
 ): T[] => {
@@ -19,18 +19,18 @@ export const simpleSort = <T>(
       return Array.isArray(sortBy) ? sortBy : [sortBy, 'asc'];
     }
   );
-  const indexAndValuesList: Array<[number, ...(string | number)[]]> = list.map(
-    (item, index) => [
-      index,
-      ...sortByListWithOrder.map(([sortBy]) => sortBy(item)),
-    ]
+  const values = new WeakMap<T, Array<string | number>>(
+    list.map(i => [i, Array.from(Array(sortByList.length))])
   );
 
-  indexAndValuesList.sort((a, b) => {
+  return [...list].sort((a, b) => {
     for (let i = 0; i < sortByListWithOrder.length; i++) {
-      const aValue = a[i + 1];
-      const bValue = b[i + 1];
-      const sortAscending = sortByListWithOrder[i][1] !== 'desc';
+      const [sortBy, order] = sortByListWithOrder[i];
+      const aArray = values.get(a) as (string | number)[];
+      const bArray = values.get(b) as (string | number)[];
+      const aValue = aArray[i] ?? (aArray[i] = sortBy(a));
+      const bValue = bArray[i] ?? (bArray[i] = sortBy(b));
+      const sortAscending = order !== 'desc';
 
       let result = 0;
 
@@ -50,6 +50,4 @@ export const simpleSort = <T>(
     }
     return 0;
   });
-
-  return indexAndValuesList.map(([index]) => list[index]);
 };
