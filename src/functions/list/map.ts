@@ -1,6 +1,6 @@
 import {List} from '../../interfaces/list';
 
-export const map = <T, TFunction extends (item: T) => any>(
+export const map = <T, TFunction extends (item: T) => unknown>(
   items: List<T>,
   fn: TFunction
 ): List<ReturnType<TFunction>> =>

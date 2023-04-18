@@ -1,3 +1,3 @@
 export * from './array';
 export * from './list';
-export * from './other/recursive-set';
+export * from './other/deep-partial-set';
