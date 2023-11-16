@@ -15,9 +15,9 @@
     "clean": "gts clean",
     "compile": "tsc",
     "fix": "gts fix",
-    "prepare": "npm.cmd run compile",
-    "pretest": "npm.cmd run compile",
-    "posttest": "npm.cmd run lint"
+    "prepare": "pnpm.cmd run compile",
+    "pretest": "pnpm.cmd run compile",
+    "posttest": "pnpm.cmd run lint"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
