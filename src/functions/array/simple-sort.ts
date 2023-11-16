@@ -10,7 +10,7 @@ export const desc = <T>(
 
 export const simpleSort = <T>(
   list: T[],
-  ...sortByList: Array<SortByFunction<T> | [SortByFunction<T>, SortOrder]>
+  ...sortByList: Array<[SortByFunction<T>, SortOrder]>
 ): T[] => {
   if (!sortByList?.length) return [...list];
 
