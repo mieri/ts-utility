@@ -50,6 +50,7 @@ describe('Function deepPartialSet', () => {
         firstName: 'Test',
         lastName: 'Testsson',
       },
+      weapons: 'sword',
       items: {
         pouch: {color: 'blue', contents: {gold: 10, silver: 20, copper: 30}},
       },
