@@ -1,6 +1,7 @@
 import {ContextualCard} from '@faker-js/faker/helpers';
 import {readFile} from 'node:fs/promises';
 import {simpleSort} from './functions';
+import {AnyObject} from './types';
 import {asc, desc} from './functions/array/simple-sort';
 
 // function generatePerson() {
@@ -55,7 +56,7 @@ async function main() {
 
 main();
 
-function recursivelyCountObjectsPropertiesLetters(item: any): number {
+function recursivelyCountObjectsPropertiesLetters(item: AnyObject): number {
   return Object.keys(item).reduce((count, key) => {
     switch (typeof item[key]) {
       case 'string':

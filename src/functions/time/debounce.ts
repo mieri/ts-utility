@@ -1,4 +1,4 @@
-import {Fn as AnyFn} from '../../types/any-fn';
+import {AnyFn} from '../../types';
 
 export function debounce<Fn extends AnyFn>(fn: Fn, time = 0) {
   let timeoutId: ReturnType<typeof setTimeout>;

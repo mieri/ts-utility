@@ -1,4 +1,5 @@
 import {groupBy} from './group-by';
+import persons from '../../../test-data.json';
 
 describe('array', () => {
   describe('group-by', () => {
@@ -34,6 +35,15 @@ describe('array', () => {
 
       // expect(result.fourth?.length).equals(2);
       // will give an error since "fourth" is not a known group name.
+    });
+
+    it('should group by gender', () => {
+      const groupedByGender = groupBy(persons, i => i.gender);
+
+      // @ts-expect-error We know that Male exists
+      expect(groupedByGender.Male.length).toEqual(450);
+      // @ts-expect-error We know that Female exists
+      expect(groupedByGender.Female.length).toEqual(444);
     });
   });
 });

@@ -1,3 +1,3 @@
 export * from './functions';
 export {List} from './interfaces/list';
-export {RecursivePartial} from './types/recursive-partial';
+export {deepPartialSet} from './functions/other/deep-partial-set';
