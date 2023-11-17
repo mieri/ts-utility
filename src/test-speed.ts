@@ -1,11 +1,13 @@
 import {ContextualCard} from '@faker-js/faker/helpers';
 import {readFile} from 'node:fs/promises';
 import {simpleSort} from './functions';
-import {AnyObject} from './types';
 import {asc, desc} from './functions/array/simple-sort';
+import {AnyObject} from './types';
+
+// import faker from '@faker-js/faker';
 
 // function generatePerson() {
-//   const contextualCard = faker.helpers.contextualCard();
+//  const contextualCard = faker.helpers.contextualCard();
 //   return {
 //     ...contextualCard,
 //     joined: faker.date.past(10),
@@ -13,8 +15,8 @@ import {asc, desc} from './functions/array/simple-sort';
 // }
 
 // console.time('Generate');
-// const personList = Array(100000);
-// for (let i = 0; i < 100000; i++) {
+// const personList = Array(1000);
+// for (let i = 0; i < 1000; i++) {
 //   if (i % 10000 === 0) console.log(i / 1000);
 //   personList[i] = generatePerson();
 // }
@@ -23,7 +25,7 @@ import {asc, desc} from './functions/array/simple-sort';
 
 async function main() {
   const cards: ContextualCard[] = JSON.parse(
-    await readFile('src/person-list.json', 'utf-8')
+    await readFile('person-list.json', 'utf-8')
   );
   console.log(cards[0]);
   console.time('Time to sort other');

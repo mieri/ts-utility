@@ -1,36 +1,30 @@
-type SortByFunction<T> = ((item: T) => string) | ((item: T) => number);
+type Getter<T> = ((item: T) => string) | ((item: T) => number);
 type SortOrder = 'asc' | 'desc';
 
-export const asc = <T>(
-  sortBy: SortByFunction<T>
-): [SortByFunction<T>, SortOrder] => [sortBy, 'asc'];
-export const desc = <T>(
-  sortBy: SortByFunction<T>
-): [SortByFunction<T>, SortOrder] => [sortBy, 'desc'];
+export const asc = <T>(getter: Getter<T>): [Getter<T>, SortOrder] => [
+  getter,
+  'asc',
+];
+export const desc = <T>(getter: Getter<T>): [Getter<T>, SortOrder] => [
+  getter,
+  'desc',
+];
 
 export const simpleSort = <T>(
   list: T[],
-  ...sortByList: Array<[SortByFunction<T>, SortOrder]>
+  ...getterList: [Getter<T>, SortOrder][]
 ): T[] => {
-  if (!sortByList?.length) return [...list];
+  if (!getterList?.length) return [...list];
 
-  const sortByListWithOrder: [SortByFunction<T>, SortOrder][] = sortByList.map(
-    sortBy => {
-      return Array.isArray(sortBy) ? sortBy : [sortBy, 'asc'];
-    }
-  );
   const indexAndValuesList: Array<[number, ...(string | number)[]]> = list.map(
-    (item, index) => [
-      index,
-      ...sortByListWithOrder.map(([sortBy]) => sortBy(item)),
-    ]
+    (item, index) => [index, ...getterList.map(([sortBy]) => sortBy(item))]
   );
 
   indexAndValuesList.sort((a, b) => {
-    for (let i = 0; i < sortByListWithOrder.length; i++) {
+    for (let i = 0; i < getterList.length; i++) {
       const aValue = a[i + 1];
       const bValue = b[i + 1];
-      const sortAscending = sortByListWithOrder[i][1] !== 'desc';
+      const sortAscending = getterList[i][1] !== 'desc';
 
       let result = 0;
 
