@@ -1,8 +1,8 @@
 import {ContextualCard} from '@faker-js/faker/helpers';
 import {readFile} from 'node:fs/promises';
 import {simpleSort} from './functions';
-import {desc} from './functions/array/simple-sort';
 import {AnyObject} from './types';
+import {asc, desc} from './functions/array/simple-sort';
 
 // function generatePerson() {
 //   const contextualCard = faker.helpers.contextualCard();
@@ -31,9 +31,9 @@ async function main() {
   Array.from(Array(10)).forEach(() => {
     simpleSort(
       cards,
-      i => i.name.length,
+      asc(i => i.name.length),
       desc(i => i.name),
-      i => recursivelyCountObjectsPropertiesLetters(i)
+      asc(i => recursivelyCountObjectsPropertiesLetters(i))
     );
   });
 
@@ -43,9 +43,9 @@ async function main() {
   Array.from(Array(10)).forEach(() => {
     simpleSort(
       cards,
-      i => i.name.length,
+      asc(i => i.name.length),
       desc(i => i.name),
-      i => recursivelyCountObjectsPropertiesLetters(i)
+      asc(i => recursivelyCountObjectsPropertiesLetters(i))
     );
   });
   console.timeEnd('Time to sort');

@@ -5,8 +5,8 @@ describe('simpleSort', () => {
   it('should sort list by whether its type is flying, then by name', () => {
     const result = simpleSort(
       json.pokemon,
-      i => (i.type.includes('Flying') ? 1 : 0), // Only accepts methods returning string | number
-      i => i.name
+      asc(i => (i.type.includes('Flying') ? 1 : 0)), // Only accepts methods returning string | number
+      asc(i => i.name)
     );
 
     expect(result.slice(0, 10).map(i => `${i.num} ${i.name}`)).toEqual([
