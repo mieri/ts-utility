@@ -33,8 +33,8 @@ describe('array', () => {
       expect(result.second?.length).toEqual(1);
       expect(result.third?.length).toEqual(2);
 
-      // expect(result.fourth?.length).equals(2);
-      // will give an error since "fourth" is not a known group name.
+      // @ts-expect-error will give an error since "fourth" is not a known group name.
+      expect(result.fourth?.length).toEqual(undefined);
     });
 
     it('should group by gender', () => {
