@@ -71,39 +71,39 @@ Optionally use a function to modify current value.
 
 ```typescript
 it('should add 10 gold, 10 silver and 10 copper to persons pouch', () => {
-    const person = {
-      personal: {
-        firstName: 'Test',
-        lastName: 'Testsson',
-      },
-      items: {
-        pouch: {color: 'blue', contents: {gold: 10, silver: 20, copper: 30}},
-      },
-    };
+  const person = {
+    personal: {
+      firstName: 'Test',
+      lastName: 'Testsson',
+    },
+    items: {
+      pouch: {color: 'blue', contents: {gold: 10, silver: 20, copper: 30}},
+    },
+  };
 
-    const result = deepPartialSet(person, {
-      items: {
-        pouch: {
-          contents: {
-            gold: i => i + 10,
-            silver: i => i + 10,
-            copper: i => i + 10,
-          },
+  const result = deepPartialSet(person, {
+    items: {
+      pouch: {
+        contents: {
+          gold: i => i + 10,
+          silver: i => i + 10,
+          copper: i => i + 10,
         },
       },
-    });
-
-    expect(result.items.pouch.contents).toEqual({
-      gold: 20,
-      silver: 30,
-      copper: 40,
-    });
-    // Keep unchanged objects
-    expect(result.personal).toBe(person.personal);
-    // New objects for the complete tree where a child has a change
-    expect(result).not.toBe(person);
-    expect(result.items).not.toBe(person.items);
-    expect(result.items.pouch).not.toBe(person.items.pouch);
-    expect(result.items.pouch.contents).not.toBe(person.items.pouch.contents);
+    },
   });
+
+  expect(result.items.pouch.contents).toEqual({
+    gold: 20,
+    silver: 30,
+    copper: 40,
+  });
+  // Keep unchanged objects
+  expect(result.personal).toBe(person.personal);
+  // New objects for the complete tree where a child has a change
+  expect(result).not.toBe(person);
+  expect(result.items).not.toBe(person.items);
+  expect(result.items.pouch).not.toBe(person.items.pouch);
+  expect(result.items.pouch.contents).not.toBe(person.items.pouch.contents);
+});
 ```
