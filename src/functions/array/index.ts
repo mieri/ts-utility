@@ -1,2 +1,2 @@
 export {groupBy} from './group-by';
-export {simpleSort} from './simple-sort';
+export {simpleSort, asc, desc} from './simple-sort';
