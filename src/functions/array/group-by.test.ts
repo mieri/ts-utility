@@ -1,5 +1,5 @@
 import {groupBy} from './group-by';
-import persons from '../../../test-data.json';
+import pokemonTestData from '../../../assets/pokemon-test-data.json';
 
 describe('array', () => {
   describe('group-by', () => {
@@ -38,12 +38,16 @@ describe('array', () => {
     });
 
     it('should group by gender', () => {
-      const groupedByGender = groupBy(persons, i => i.gender);
+      const groupedByFirstType = groupBy(
+        pokemonTestData.pokemon,
+        i => i.type[0]
+      );
 
+      console.log(Object.keys(groupedByFirstType));
       // @ts-expect-error We know that Male exists
-      expect(groupedByGender.Male.length).toEqual(450);
+      expect(groupedByFirstType.Grass.length).toEqual(12);
       // @ts-expect-error We know that Female exists
-      expect(groupedByGender.Female.length).toEqual(444);
+      expect(groupedByFirstType.Water.length).toEqual(28);
     });
   });
 });

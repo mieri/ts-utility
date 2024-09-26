@@ -1,10 +1,12 @@
 {
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
-    "rootDir": ".",
+    "declaration": true,
+    "rootDir": "./src",
     "outDir": "build",
     "resolveJsonModule": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "lib": ["DOM"]
   },
   "exclude": ["src/**/*.test.ts"],
   "include": ["src/**/*.ts"]
